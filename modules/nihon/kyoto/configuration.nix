@@ -32,6 +32,7 @@
       git
       gh
       yazi
+      vesktop
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
