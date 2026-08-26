@@ -7,11 +7,15 @@
     };
   };
   
-  perSystem =  { pkgs, lib, ... }: {
+  perSystem =  { pkgs, lib, self', ... }: {
 
     packages.nihonNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
       settings = {
+        spawn-at-startup = [
+	  (lib.getExe self'.packages.nihonNoctalia)
+	];
+
         input.keyboard = {
           xkb.layout = "us,jp";
         };
@@ -19,6 +23,8 @@
         layout.gaps = 5;
 
         binds = {
+	  "Mod+S".spawn-sh = 
+	    "${lib.getExe self'.packages.nihonNoctalia} msg panel-toggle launcher";
           "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+Q".close-window = _:{};
         };
