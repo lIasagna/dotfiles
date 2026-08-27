@@ -13,7 +13,7 @@
       inherit pkgs;
       settings = {
         spawn-at-startup = [
-	  (lib.getExe self'.packages.nihonNoctalia)
+	  "noctalia"
 	];
 
         input.keyboard = {

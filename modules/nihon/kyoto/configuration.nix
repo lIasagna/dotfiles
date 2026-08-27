@@ -5,10 +5,13 @@
     imports = [
         self.nixosModules.kyotoHardware
         self.nixosModules.niri
+	self.nixosModules.bluetooth
+	self.nixosModules.noctalia-greeter
       ];
-
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    
+    sevices.greetd = {
+      enable = true;
+    };  
 
     networking.hostName = "kyoto";
 
@@ -33,7 +36,12 @@
       gh
       yazi
       vesktop
+      prism-launcher
     ];
+
+    fonts.packages = with pkgs; [
+      inter
+      jetbrains-mono
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     system.stateVersion = "26.11";
