@@ -3,15 +3,20 @@
   flake.nixosModules.kyotoConfig = { config, lib, pkgs, ... }: {
 
     imports = [
+        self.nixosModules.home-manager
         self.nixosModules.kyotoHardware
+	self.nixosModules.gaming
         self.nixosModules.niri
 	self.nixosModules.bluetooth
 	self.nixosModules.noctalia-greeter
       ];
     
-    sevices.greetd = {
+    services.greetd = {
       enable = true;
     };  
+
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
     networking.hostName = "kyoto";
 
@@ -36,12 +41,13 @@
       gh
       yazi
       vesktop
-      prism-launcher
+      ghostty
     ];
 
     fonts.packages = with pkgs; [
       inter
       jetbrains-mono
+    ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
     system.stateVersion = "26.11";

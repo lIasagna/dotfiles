@@ -23,8 +23,7 @@
         layout.gaps = 5;
 
         binds = {
-	  "Mod+S".spawn-sh = 
-	    "${lib.getExe self'.packages.nihonNoctalia} msg panel-toggle launcher";
+	  "Mod+S".spawn-sh = "noctalia msg panel-toggle launcher";
           "Mod+Return".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+Q".close-window = _:{};
         };

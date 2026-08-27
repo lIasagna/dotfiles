@@ -4,7 +4,6 @@
   flake.nixosModules.home-manager = {
     imports = [
       inputs.home-manager.nixosModules.home-manager
-      inputs.home-manager.flakeModules.home-manager
     ];
 
     home-manager = {
@@ -19,10 +18,10 @@
 	  self.homeModules.bash
 	  self.homeModules.noctalia
 	  self.homeModules.zen-browser
+	  self.homeModules.musicplayer
 	];
+	home.stateVersion = "26.05";
       };
-      
-      home.stateVersion = "26.05";
-    };
+    };  
   };
 }

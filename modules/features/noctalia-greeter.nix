@@ -8,8 +8,8 @@
     programs.noctalia-greeter = {
       enable = true;
       settings = {
-        session.default = "niri"
-	keyboard.layout = "us"
+        session.default = "niri";
+	keyboard.layout = "us";
       };
     };
   };  
