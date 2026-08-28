@@ -2,6 +2,12 @@
   
   flake.nixosModules.kyotoConfig = { config, lib, pkgs, ... }: {
 
+
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+      "steam"
+      "steam-unwrapped"
+    ];  
+
     imports = [
         self.nixosModules.home-manager
         self.nixosModules.kyotoHardware
@@ -42,6 +48,10 @@
       yazi
       vesktop
       ghostty
+      anki-bin
+      grim
+      slurp
+      wl-clipboard
     ];
 
     fonts.packages = with pkgs; [

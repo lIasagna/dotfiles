@@ -1,10 +1,14 @@
 { self, inputs, ... }: {
   
-  flake.homeModules.musicplayer = {
+  flake.homeModules.musicplayer = {pkgs, ...}: {
     services.mpd = {
       enable = true;
-      musicDirectory = "/home/kageumi/Music";
+      musicDirectory = "~/Music";
+      network = {
+        startWhenNeeded = true;
+      };	
       extraConfig = ''
+        bind_to_address "/run/user/1001/mpd/socket"
         audio_output {
 	  type "pipewire"
 	  name "My PipeWire Output"
@@ -12,17 +16,21 @@
       '';	
     };
     home.packages = [
-      inputs.rmpc.packages.${pkgs.stdenv.hostPlatform.system}.default
+      pkgs.yt-dlp
+      pkgs.ffmpeg-full
+      pkgs.mpd
+      (pkgs.python3.withPackages (ps: with ps; [
+        mutagen
+      ])) 	
     ];
-
     programs.rmpc = {
       enable = true;
       config = ''
         (
-            address: "127.0.0.1:6600",
+            address: "/run/user/1001/mpd/socket",
             password: None,
             theme: None,
-            cache_dir: None,
+            cache_dir: Some("~/Music"),
             on_song_change: None,
             volume_step: 5,
             max_fps: 30,
@@ -34,7 +42,7 @@
             enable_config_hot_reload: true,
             enable_keepalive: true,
             enable_lyrics_hot_reload: false,
-            status_update_interval_ms: 1000,
+            status_update_interval_ms: Some(500),
             rewind_to_start_sec: None,
             keep_state_on_song_change: true,
             reflect_changes_to_playlist: false,
@@ -121,9 +129,6 @@
                     "<PageDown>": PageDown,
                     "gg":         Top,
                     "G":          Bottom,
-                    "zt":         ScrollFocusedToTop,
-                    "zz":         ScrollFocusedToMiddle,
-                    "zb":         ScrollFocusedToBottom,
                     "<Space>":    Select,
                     "<C-Space>":  InvertSelection,
                     "/":          EnterSearch,
@@ -313,5 +318,6 @@
             ],
         )
 	'';
+    };	
   };  
 }

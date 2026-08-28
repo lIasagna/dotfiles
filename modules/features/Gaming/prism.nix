@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.nixosModules.prismlauncher = {
+  flake.nixosModules.prismlauncher = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       (prismlauncher.override {
         jdks = [
