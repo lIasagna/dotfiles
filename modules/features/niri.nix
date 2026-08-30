@@ -76,7 +76,22 @@
 	};  
 
         layout = {
-	  gaps = 5;
+	  gaps = 8;
+	  always-center-single-column = {};
+	  empty-workspace-above-first = {};
+	  focus-ring.off = {};
+	  preset-column-widths = [
+	    { proportion = 0.33333; }
+	    { proportion = 0.5; }
+	    { proportion = 0.66667; }
+	    { proportion = 1.0; }
+	  ];
+	  preset-window-heights = [
+	    { proportion = 0.33333; }
+	    { proportion = 0.5; }
+	    { proportion = 0.66667; }
+	    { proportion = 1.0; }
+	  ];  
 	};  
 
         binds = {
@@ -84,9 +99,18 @@
           "Mod+Q".spawn-sh = lib.getExe pkgs.ghostty;
           "Mod+C".close-window = _:{};
 
-          "Mod+WheelScrollDown".focus-workspace-down = _:{};
+          "Mod+J".focus-workspace-down = _:{};
+	  "Mod+K".focus-workspace-up = _:{};
+	  "Mod+H".focus-column-left = _:{};
+	  "Mod+L".focus-column-right = _:{};
 
-	  "Mod+WheelScrollUp".focus-workspace-up = _:{};
+          "Mod+Shift+J".move-column-to-workspace-down = _:{};
+	  "Mod+Shift+K".move-column-to-workspace-up = _:{};
+	  "Mod+Shift+H".move-column-left = _:{};
+	  "Mod+Shift+L".move-column-right = _:{};
+
+	  "Mod+R".switch-preset-column-width = _:{};
+	  "Mod+Ctrl+R".switch-preset-window-height = _:{};
 
 	  "Mod+Shift+S".spawn-sh = "grim -g \"$(slurp)\" - | wl-copy";
         };

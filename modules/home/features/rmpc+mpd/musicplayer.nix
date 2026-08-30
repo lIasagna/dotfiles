@@ -15,11 +15,12 @@
 	}
       '';	
     };
-    home.packages = [
-      pkgs.yt-dlp
-      pkgs.ffmpeg-full
-      pkgs.mpd
-      (pkgs.python3.withPackages (ps: with ps; [
+    home.packages = with pkgs; [
+      
+      yt-dlp
+      ffmpeg-full
+      mpd
+      (python3.withPackages (ps: with ps; [
         mutagen
       ])) 	
     ];

@@ -1,7 +1,7 @@
 { self, inputs, ... }:
 
 {
-  flake.nixosModules.home-manager = {
+  flake.nixosModules.home-manager = { lib, ... }: {
     imports = [
       inputs.home-manager.nixosModules.home-manager
     ];
@@ -13,6 +13,8 @@
         inherit inputs;
       };
 
+
+
       users.kageumi = {
         imports = [
 	  self.homeModules.bash
@@ -20,6 +22,9 @@
 	  self.homeModules.zen-browser
 	  self.homeModules.musicplayer
 	];
+	home.sessionVariables = {
+          MPD_HOST = lib.mkForce "/run/user/1001/mpd/socket";
+	};
 	home.stateVersion = "26.05";
       };
     };  
