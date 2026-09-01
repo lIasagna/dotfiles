@@ -13,13 +13,16 @@
       inherit pkgs;
       v2-settings = true;
       settings = {
+        
+        prefer-no-csd = {};
+
         spawn-at-startup = [
 	  "noctalia"
 	];
 
 	xwayland-satellite.path =
 	  lib.getExe pkgs.xwayland-satellite;
-
+ 
         input = {
 	  keyboard = {
             xkb.layout = "us,jp";
@@ -73,10 +76,10 @@
 	      };	
 	    };
 	  };
-	};  
+	};
 
         layout = {
-	  gaps = 8;
+	  gaps = 12;
 	  always-center-single-column = {};
 	  empty-workspace-above-first = {};
 	  focus-ring.off = {};
@@ -92,7 +95,15 @@
 	    { proportion = 0.66667; }
 	    { proportion = 1.0; }
 	  ];  
-	};  
+	};
+
+	window-rules = [
+	  {
+	    geometry-corner-radius = 12;
+	    clip-to-geometry = true;
+	  }
+	];
+
 
         binds = {
 	  "Mod+Return".spawn-sh = "noctalia msg panel-toggle launcher";
@@ -103,6 +114,8 @@
 	  "Mod+K".focus-workspace-up = _:{};
 	  "Mod+H".focus-column-left = _:{};
 	  "Mod+L".focus-column-right = _:{};
+
+	  "Mod+Shift+F".fullscreen-window = _:{};
 
           "Mod+Shift+J".move-column-to-workspace-down = _:{};
 	  "Mod+Shift+K".move-column-to-workspace-up = _:{};

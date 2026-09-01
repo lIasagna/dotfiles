@@ -15,10 +15,20 @@
         self.nixosModules.niri
 	self.nixosModules.bluetooth
 	self.nixosModules.noctalia-greeter
+	self.nixosModules.mousePatch
       ];
     
     services.greetd = {
       enable = true;
+    };  
+
+    services.keyd = {
+      enable = true;
+      keyboards = {
+        logitech = {
+	  ids = [];
+	};
+      };
     };  
 
     boot.loader.systemd-boot.enable = true;
@@ -52,6 +62,7 @@
       grim
       slurp
       wl-clipboard
+      solaar
     ];
 
     fonts.packages = with pkgs; [
