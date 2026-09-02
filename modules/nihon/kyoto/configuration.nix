@@ -16,6 +16,7 @@
 	self.nixosModules.bluetooth
 	self.nixosModules.noctalia-greeter
 	self.nixosModules.mousePatch
+	self.nixosModules.firewall
       ];
     
     services.greetd = {
@@ -63,7 +64,10 @@
       slurp
       wl-clipboard
       solaar
+      nodejs
     ];
+
+
 
     fonts.packages = with pkgs; [
       inter
