@@ -27,6 +27,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvf = {
+      url = "github:NotAShell/nvf";
+      inputs.follows.nixpkgs = "nixpkgs";
+    };  
+
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);

@@ -21,6 +21,8 @@
 	  self.homeModules.noctalia
 	  self.homeModules.zen-browser
 	  self.homeModules.musicplayer
+	  self.homeModules.jpkeyboard
+	  self.homeModules.neovim
 	];
 	home.sessionVariables = {
           MPD_HOST = lib.mkForce "/run/user/1001/mpd/socket";
