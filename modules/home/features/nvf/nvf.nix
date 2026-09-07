@@ -1,6 +1,9 @@
 { self, inputs, ... }: {
   
   flake.homeModules.nvf = {
+    imports = [
+      inputs.nvf.homeManagerModules.default
+    ];  
     programs.nvf = {
       enable = true;
       settings = {
@@ -13,10 +16,12 @@
 	  autocomplete.nvim-cmp.enable = true;
 
 	  languages = {
-	    enableLSP = true;
 	    enableTreesitter = true;
 
-	    nix.enable = true;
+	    nix = {
+	      enable = true;
+	      lsp.enable = true;
+	    };  
 	    bash.enable = true;
 	    lua.enable = true;
 	  };  

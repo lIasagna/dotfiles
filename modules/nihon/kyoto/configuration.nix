@@ -17,6 +17,8 @@
 	self.nixosModules.noctalia-greeter
 	self.nixosModules.mousePatch
 	self.nixosModules.firewall
+        self.nixosModules.environment
+        self.nixosModules.portals
       ];
     
     services.greetd = {
@@ -65,6 +67,7 @@
       wl-clipboard
       solaar
       nodejs
+      gnome-network-displays
     ];
 
 

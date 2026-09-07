@@ -28,8 +28,8 @@
     };
 
     nvf = {
-      url = "github:NotAShell/nvf";
-      inputs.follows.nixpkgs = "nixpkgs";
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
     };  
 
   };

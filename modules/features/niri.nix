@@ -1,13 +1,15 @@
-{ self, inputs, ... }: {
-  
+{ self, inputs, ... }:
+{
   flake.nixosModules.niri = { pkgs, lib, ... }: {
     programs.niri = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.nihonNiri;
     };
   };
-  
+
   perSystem =  { pkgs, lib, self', ... }: {
+
+
 
     packages.nihonNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
@@ -18,6 +20,7 @@
 
         spawn-at-startup = [
 	  "noctalia"
+          "fcitx5 -d"
 	];
 
 	xwayland-satellite.path =
@@ -105,9 +108,14 @@
 	];
 
 
-        binds = {
+        binds = 
+          let
+            getGhostty = lib.getExe pkgs.ghostty;
+          in {
 	  "Mod+Return".spawn-sh = "noctalia msg panel-toggle launcher";
-          "Mod+Q".spawn-sh = lib.getExe pkgs.ghostty;
+          "Mod+Q".spawn-sh = getGhostty;
+          "Mod+Ctrl+R".spawn-sh = "${getGhostty} -e rmpc";
+          "Mod+F".spawn-sh = "${getGhostty} -e yazi";
           "Mod+C".close-window = _:{};
 
           "Mod+J".focus-workspace-down = _:{};
@@ -123,11 +131,24 @@
 	  "Mod+Shift+L".move-column-right = _:{};
 
 	  "Mod+R".switch-preset-column-width = _:{};
-	  "Mod+Ctrl+R".switch-preset-window-height = _:{};
+	  "Mod+Shift+R".switch-preset-window-height = _:{};
 
 	  "Mod+Shift+S".spawn-sh = "grim -g \"$(slurp)\" - | wl-copy";
         };
       };
+      runShell = [
+        (let
+          portalsConf = pkgs.writeText "niri-portals.conf" ''
+            [preferred]
+            default=gtk
+            org.freedesktop.impl.portal.ScreenCast=gnome
+            org.freedesktop.impl.portal.Screeshot=gnome
+          '';
+        in ''
+          mkdir -p "$HOME/.config/xdg-desktop-portal"
+          cp -f ${portalsConf} "$HOME/.config/xdg-desktop-portal/niri-portals.conf"
+        '')
+      ];  
     };
   };  
 }
