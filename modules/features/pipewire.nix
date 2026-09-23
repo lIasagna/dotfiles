@@ -1,6 +1,10 @@
 { self, inputs, ... }: {
   flake.nixosModules.pipewire = {
     services = {
+      avahi = {
+        enable = true;
+        nssmdns4 = true;
+      };
       pipewire = {
         enable = true;
         alsa.enable = true;

@@ -14,7 +14,7 @@
          }
       '';
     };
-    inputs = [
+    imports = [
       self.nixosModules.pipewire
     ];
     hardware = {

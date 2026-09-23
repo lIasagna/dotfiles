@@ -6,6 +6,7 @@
     nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
       "steam"
       "steam-unwrapped"
+      "osu-lazer-bin"
     ];  
 
     imports = [
@@ -68,6 +69,8 @@
       solaar
       nodejs
       gnome-network-displays
+      osu-lazer-bin
+      bitwarden-desktop
     ];
 
 
