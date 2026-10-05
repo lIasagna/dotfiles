@@ -30,7 +30,11 @@
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
-    };  
+    };
+    
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak";
+    };
 
   };
 

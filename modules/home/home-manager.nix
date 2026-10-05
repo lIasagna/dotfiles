@@ -23,6 +23,7 @@
 	  self.homeModules.musicplayer
 	  self.homeModules.jpkeyboard
 	  self.homeModules.neovim
+          self.homeModules.flatpak
 	];
 	home.sessionVariables = {
           MPD_HOST = lib.mkForce "/run/user/1001/mpd/socket";

@@ -2,7 +2,7 @@
 
   flake.nixosModules.wmenu = { pkgs, ... }: {
 
-    environment.systemPackackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
       wmenu
     ];
   };

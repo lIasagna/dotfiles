@@ -20,6 +20,7 @@
 	self.nixosModules.firewall
         self.nixosModules.environment
         self.nixosModules.portals
+        self.nixosModules.wmenu
       ];
     
     services.greetd = {

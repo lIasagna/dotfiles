@@ -13,7 +13,6 @@
 
     packages.nihonNiri = inputs.wrapper-modules.wrappers.niri.wrap {
       inherit pkgs;
-      v2-settings = true;
       settings = {
         
         prefer-no-csd = {};
