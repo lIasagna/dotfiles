@@ -1,6 +1,6 @@
 { self, inputs, ... }: {
 
-  flake.homeModules.anki = {pkgs, ...}:{
+  flake.nixosModules.anki = {pkgs, ...}:{
     
     environment.systemPackages = [
       (pkgs.anki.withAddons [

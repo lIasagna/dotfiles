@@ -21,6 +21,7 @@
         self.nixosModules.environment
         self.nixosModules.portals
         self.nixosModules.wmenu
+        self.nixosModules.anki
       ];
     
     services.greetd = {
