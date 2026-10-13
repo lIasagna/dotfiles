@@ -11,7 +11,7 @@
     services.flatpak.uninstallUnmanaged = false;
 
     services.flatpak.packages = [ 
-      { appId = "org.vinegarhq.Sober"; source = "flathub"; }
+      { appId = "org.vinegarhq.Sober"; origin = "flathub"; }
     ];
   };
 }

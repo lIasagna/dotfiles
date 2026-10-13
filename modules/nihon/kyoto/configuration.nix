@@ -63,7 +63,6 @@
       yazi
       vesktop
       ghostty
-      anki-bin
       grim
       slurp
       wl-clipboard

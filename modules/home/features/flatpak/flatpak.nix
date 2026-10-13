@@ -6,8 +6,9 @@
       enable = true;
     };
     
-    import = [
-      self.homeModules.flapakapps
+    imports = [
+      self.homeModules.flatpakapps
+      inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ];
 
   };
